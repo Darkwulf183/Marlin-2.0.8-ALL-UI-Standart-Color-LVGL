@@ -22,7 +22,7 @@
 #pragma once
 
 //JUST uncomment the option for your machine
-#define V6_330_TITAN_TMC 1
+//#define V6_330_TITAN_TMC 1
 //#define V6_330_TITAN_NO_TMC 1
 //#define V6_330_NO_TITAN_TMC 1
 //#define V6_330_NO_TITAN_NO_TMC 1
@@ -53,7 +53,7 @@
 //Ui Theme Changer
 
 //#define TFT_CLASSIC_UI    //Marlin Classic
-#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
+//#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
 //#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
 
 
