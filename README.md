@@ -39,6 +39,13 @@
 //#define TFT_CLASSIC_UI    //Marlin Classic
 //#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
 #define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
+
+//Dual Extruder Setup
+//#define Dual_E
+
+//Power Loss Recovery
+//#define POWER_L
+
 ```
 
 # Marlin 3D Printer Firmware
