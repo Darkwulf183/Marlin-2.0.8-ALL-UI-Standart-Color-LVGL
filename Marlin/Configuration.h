@@ -991,7 +991,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]] (noch zu ändern)
  */
 #if WITH_TMC && WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 700, 778 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 778 }
 #elif WITH_TMC2209 && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
 #elif WITH_TMC && !WITH_TITAN
