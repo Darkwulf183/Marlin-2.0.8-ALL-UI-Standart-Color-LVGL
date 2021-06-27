@@ -632,7 +632,7 @@
 //
 // For Z set the number of stepper drivers
 //
-#ifdef V6_500_TITAN_TMC2209
+#ifdef WITH_DOUBLE_Z
   #define NUM_Z_STEPPER_DRIVERS 2   // (1-4) Z options change based on how many (RN)
 #else
   #define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many (RN)
@@ -809,6 +809,12 @@
  * Z Steppers Auto-Alignment
  * Add the G34 command to align multiple Z steppers using a bed probe.
  */
+#ifdef WITH_Z_ALIGN  //(RN)
+  #define Z_STEPPER_AUTO_ALIGN 
+#else
+  //#define Z_STEPPER_AUTO_ALIGN
+#endif
+
 //#define Z_STEPPER_AUTO_ALIGN
 #if ENABLED(Z_STEPPER_AUTO_ALIGN)
   // Define probe X and Y positions for Z1, Z2 [, Z3 [, Z4]]
@@ -1300,6 +1306,13 @@
    * an option on the LCD screen to continue the print from the last-known
    * point in the file.
    */
+
+#ifdef POWER_L   //(RN)
+  #define POWER_LOSS_RECOVERY
+#else
+  //#define POWER_LOSS_RECOVERY
+#endif
+  
   //#define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT   false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)

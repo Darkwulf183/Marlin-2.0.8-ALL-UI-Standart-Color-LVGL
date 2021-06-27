@@ -29,13 +29,15 @@
 //#define V6_400_TITAN_TMC 1
 //#define V6_400_NO_TITAN_TMC 1
 //#define V6_500_TITAN_TMC 1
-//#define V6_500_TITAN_TMC2209 1     // New Chitu V6 190319     (RN)
+//#define V6_500_TITAN_TMC2209 1       // New Chitu V6 190319     (RN)
+//#define V6_500_TITAN_TMC2209V9 1     // New Chitu V9 200420     (RN)  Testrepo !!! Please only test with a full backup of the board !!!!!!!!!
 
 // #define V5_330_TITAN_TMC 1
 // #define V5_330_TITAN_NO_TMC 1
 // #define V5_330_NO_TITAN_TMC 1
 // #define V5_330_NO_TITAN_NO_TMC 1
 // #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
+// #define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
 
 // Section shortened name
 // Tronxy X5SA V6 330 Titan TMC = X5SA V6 330 TTMC 2.0.8
@@ -51,11 +53,15 @@
 // Tronxy X5SA V5 330 = X5SA V5 330 2.0.8
 
 //Ui Theme Changer
-
 //#define TFT_CLASSIC_UI    //Marlin Classic
-//#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
+#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
 //#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
 
+//Dual Extruder Setup
+//#define Dual_E
+
+//Power Loss Recovery
+//#define POWER_L
 
 #if V6_330_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V6
@@ -124,10 +130,23 @@
   #define MOTHERBOARD BOARD_CHITU3D_V6
   #define WITH_TMC2209 1
   #define WITH_TITAN 1
+  #define WITH_DOUBLE_Z 1   //(RN)
+  #define WITH_Z_ALIGN 1    //Comment this out if you not use Z Auto Align (RN)
   #define X_BED_SIZE 500
   #define Y_BED_SIZE 500
   #define Z_MAX_POS 500
   #define CUSTOM_MACHINE_NAME "X5SA V6 500 TTMC NEW 2.0.8"
+
+#elif V6_500_TITAN_TMC2209V9 
+  #define MOTHERBOARD BOARD_CHITU3D_V6
+  #define WITH_TMC2209V9 1
+  #define WITH_TITAN 1
+  #define WITH_DOUBLE_Z 1   //(RN)
+  #define WITH_Z_ALIGN 1    //Comment this out if you not use Z Auto Align (RN)
+  #define X_BED_SIZE 500
+  #define Y_BED_SIZE 500
+  #define Z_MAX_POS 500
+  #define CUSTOM_MACHINE_NAME "X5SA V6 500 TTMC NEW V9 2.0.8"
 
 #elif V5_330_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V5
@@ -173,6 +192,20 @@
   #define Y_BED_SIZE 310
   #define Z_MAX_POS 400
   #define CUSTOM_MACHINE_NAME "Tronxy XY3 310 2.0.8"
+
+#elif XY2_V6_255_ALL
+  #define MOTHERBOARD BOARD_CHITU3D_V6
+  #define WITH_TMC 1
+  //#define WITH_TITAN 1
+  #define XY2_MODELS 1
+  #define X_BED_SIZE 255
+  #define Y_BED_SIZE 255
+#ifdef WITH_TITAN   //(RN)
+  #define Z_MAX_POS 245 // Due to the height of the titan extruder it's recommended to reduce the max Z
+#else
+  #define Z_MAX_POS 260
+#endif
+  #define CUSTOM_MACHINE_NAME "Tronxy XY-2PRO 2.0.8"
 
 #endif
 /**
@@ -295,12 +328,26 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+
+#ifdef Dual_E   //(RN)
+  #define EXTRUDERS 2
+#else
+  #define EXTRUDERS 1
+#endif
+
+//#define EXTRUDERS 2 
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
+
+#ifdef Dual_E   //(RN)
+  #define SINGLENOZZLE
+#else
+  //#define SINGLENOZZLE
+#endif
+
 //#define SINGLENOZZLE
 
 // Save and restore temperature and fan speed on tool-change.
@@ -891,16 +938,21 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#if WITH_TMC2209 // (RN)
+#if WITH_TMC2209 //(RN)
   #define X_DRIVER_TYPE TMC2209_STANDALONE
   #define Y_DRIVER_TYPE TMC2209_STANDALONE
   #define Z_DRIVER_TYPE TMC2209_STANDALONE
   //#define X2_DRIVER_TYPE A4988
   //#define Y2_DRIVER_TYPE A4988
-  #define Z2_DRIVER_TYPE TMC2209_STANDALONE       // (RN)
+  #define Z2_DRIVER_TYPE TMC2209_STANDALONE       //(RN)
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE A4988
+#ifdef Dual_E   //(RN)
+  #define E1_DRIVER_TYPE A4988
+#else
+  //#define E1_DRIVER_TYPE A4988
+#endif
   //#define E1_DRIVER_TYPE A4988
   //#define E2_DRIVER_TYPE A4988
   //#define E3_DRIVER_TYPE A4988
@@ -908,6 +960,30 @@
   //#define E5_DRIVER_TYPE A4988
   //#define E6_DRIVER_TYPE A4988
   //#define E7_DRIVER_TYPE A4988
+
+#elif WITH_TMC2209V9 //(RN)
+  #define X_DRIVER_TYPE TMC2209_STANDALONE
+  #define Y_DRIVER_TYPE TMC2209_STANDALONE
+  #define Z_DRIVER_TYPE TMC2209_STANDALONE
+  //#define X2_DRIVER_TYPE A4988
+  //#define Y2_DRIVER_TYPE A4988
+  #define Z2_DRIVER_TYPE TMC2209_STANDALONE       //(RN)
+  //#define Z3_DRIVER_TYPE A4988
+  //#define Z4_DRIVER_TYPE A4988
+  #define E0_DRIVER_TYPE TMC2208_STANDALONE
+#ifdef Dual_E   //(RN)
+  #define E1_DRIVER_TYPE TMC2208_STANDALONE
+#else
+  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
+#endif
+  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
+  //#define E2_DRIVER_TYPE A4988
+  //#define E3_DRIVER_TYPE A4988
+  //#define E4_DRIVER_TYPE A4988
+  //#define E5_DRIVER_TYPE A4988
+  //#define E6_DRIVER_TYPE A4988
+  //#define E7_DRIVER_TYPE A4988
+
 #elif WITH_TMC  //(RN)
   #define X_DRIVER_TYPE TMC2208_STANDALONE
   #define Y_DRIVER_TYPE TMC2208_STANDALONE
@@ -918,13 +994,18 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE TMC2208_STANDALONE
-  //#define E1_DRIVER_TYPE A4988
+#ifdef Dual_E   //(RN)
+  #define E1_DRIVER_TYPE TMC2208_STANDALONE
+#else
+  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
+#endif    //(RN)
   //#define E2_DRIVER_TYPE A4988
   //#define E3_DRIVER_TYPE A4988
   //#define E4_DRIVER_TYPE A4988
   //#define E5_DRIVER_TYPE A4988
   //#define E6_DRIVER_TYPE A4988
   //#define E7_DRIVER_TYPE A4988
+
 #elif !WITH_TMC
   #define X_DRIVER_TYPE  A4988
   #define Y_DRIVER_TYPE  A4988
@@ -935,7 +1016,11 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE A4988
+#ifdef Dual_E   //(RN)
+  #define E1_DRIVER_TYPE A4988
+#else
   //#define E1_DRIVER_TYPE A4988
+#endif
   //#define E2_DRIVER_TYPE A4988
   //#define E3_DRIVER_TYPE A4988
   //#define E4_DRIVER_TYPE A4988
@@ -988,12 +1073,14 @@
 /**
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
- *                                      X, Y, Z, E0 [, E1[, E2...]] (noch zu ändern)
+ *                                      X, Y, Z, E0 [, E1[, E2...]] (RN)
  */
 #if WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 778 }
 #elif WITH_TMC2209 && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
+#elif WITH_TMC2209V9 && WITH_TITAN
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 778 }
 #elif WITH_TMC && !WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
 #elif WITH_TITAN && !WITH_TMC
@@ -1419,7 +1506,7 @@
 #else
   #define INVERT_E0_DIR false
 #endif
-#define INVERT_E1_DIR false
+#define INVERT_E1_DIR true
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -2491,7 +2578,7 @@
 // MKS LCD12864A/B with graphic controller and SD support. Follows MKS_MINI_12864 pinout.
 // https://www.aliexpress.com/item/33018110072.html
 //
-//#define MKS_LCD12864
+//#define MKS_LCD12864 //(RN)
 
 //
 // FYSETC variant of the MINI12864 graphic controller with SD support
@@ -2740,7 +2827,7 @@
 #define TFT_GENERIC
 #if ENABLED(TFT_GENERIC)
   // :[ 'AUTO', 'ST7735', 'ST7789', 'ST7796', 'R61505', 'ILI9328', 'ILI9341', 'ILI9488' ]
-  #define TFT_DRIVER AUTO
+  #define TFT_DRIVER ILI9488 //(RN)
 
   // Interface. Enable one of the following options:
   #define TFT_INTERFACE_FSMC
