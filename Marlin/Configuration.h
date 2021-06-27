@@ -1484,7 +1484,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
   #define INVERT_X_DIR false
 #else
   #define INVERT_X_DIR true
@@ -1492,7 +1492,7 @@
 
 #define INVERT_Y_DIR true
 
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
   #define INVERT_Z_DIR true
 #else
   #define INVERT_Z_DIR false
