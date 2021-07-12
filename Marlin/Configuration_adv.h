@@ -1803,7 +1803,7 @@
  *
  * See https://marlinfw.org/docs/features/lin_advance.html for full instructions.
  */
-//#define LIN_ADVANCE
+//#define LIN_ADVANCE     //Linear Advance is not compatible with Tronxy Chitu boards in standard driver settings. These must be extensively reprogrammed to spread cycle via OTP!!!!
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
   #define LIN_ADVANCE_K 0.22    // Unit: mm compression per 1mm/s extruder speed
