@@ -1070,6 +1070,12 @@
  */
 //#define DISTINCT_E_FACTORS
 
+#ifdef Dual_E   //(RN)
+  #define DISTINCT_E_FACTORS
+#else
+  //#define DISTINCT_E_FACTORS
+#endif
+
 /**
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
