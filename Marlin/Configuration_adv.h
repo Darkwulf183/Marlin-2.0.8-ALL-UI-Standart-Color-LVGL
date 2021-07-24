@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- */
+ *///
 #pragma once
 
 #define CONFIG_EXAMPLES_DIR "Tronxy/X5SA"
