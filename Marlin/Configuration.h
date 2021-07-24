@@ -22,182 +22,86 @@
 #pragma once
 
 //JUST uncomment the option for your machine
-//#define V6_330_TITAN_TMC 1
-//#define V6_330_TITAN_NO_TMC 1
-//#define V6_330_NO_TITAN_TMC 1
-//#define V6_330_NO_TITAN_NO_TMC 1
-//#define V6_400_TITAN_TMC 1
-//#define V6_400_NO_TITAN_TMC 1
-//#define V6_500_TITAN_TMC 1
-//#define V6_500_TITAN_TMC2209 1       // New Chitu V6 190319     (RN)
-//#define V6_500_TITAN_TMC2209V9 1     // New Chitu V9 200420     (RN)  Testrepo !!! Please only test with a full backup of the board !!!!!!!!!
+#define SKR_330_TITAN_TMC 1
+//#define SKR_330_NO_TITAN_TMC 1
+//#define SKR_400_TITAN_TMC 1
+//#define SKR_400_NO_TITAN_TMC 1
+//#define SKR_500_TITAN_TMC 1
 
-// #define V5_330_TITAN_TMC 1
-// #define V5_330_TITAN_NO_TMC 1
-// #define V5_330_NO_TITAN_TMC 1
-// #define V5_330_NO_TITAN_NO_TMC 1
-// #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
-// #define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
+// #define XY3_SKR_310_NO_TITAN_NO_NO_ABL 1
+ //#define XY2_SKR_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_SKR_255_ALL !!! (RN)
 
-// Section shortened name
-// Tronxy X5SA V6 330 Titan TMC = X5SA V6 330 TTMC 2.0.8
-// Tronxy X5SA V6 330 Titan = X5SA V6 330 T 2.0.8
-// Tronxy X5SA V6 330 TMC = X5SA V6 330 TMC 2.0.8
-// Tronxy X5SA V6 400 Titan TMC = X5SA V6 400 TTMC 2.0.8
-// Tronxy X5SA V6 400 TMC = X5SA V6 400 TMC 2.0.8
-// Tronxy X5SA V6 500 Titan TMC = X5SA V6 500 TTMC 2.0.8
-// Tronxy X5SA V6 500 Titan TMC2209 = X5SA V6 500 TTMC NEW 2.0.8
-// Tronxy X5SA V5 330 Titan TMC = X5SA V5 330 TTMC 2.0.8
-// Tronxy X5SA V5 330 Titan = X5SA V5 330 T 2.0.8
-// Tronxy X5SA V5 330 TMC = X5SA V5 330 TMC 2.0.8
-// Tronxy X5SA V5 330 = X5SA V5 330 2.0.8
 
-//Ui Theme Changer
-//#define TFT_CLASSIC_UI    //Marlin Classic
-#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
-//#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
+
+//TMC Driver Model (Drivers in Uart Mode !!!) TMC2208 are standard selection and always active until TMC2209 is selected.
+//Sensorless homing is not configured by me and everyone must test it themselves. Since I do not use this !!!!
+#define WITH_TMC2209
+
+
+
+//Please select here what you want. Dual Z axis is no longer possible with a dual extruder. With a dual Z axis no dual extruder is possible !!!! Selecting both will result in Marlin not compiling !!!!
 
 //Dual Extruder Setup
 //#define Dual_E
 
-//Power Loss Recovery
-//#define POWER_L
+//Dual Z Axes Support
+//#define WITH_DOUBLE_Z
+//#define WITH_Z_ALIGN      //Comment this out if you not use Z Auto Align (RN)
 
-#if V6_330_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+
+#if SKR_330_TITAN_TMC
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   #define WITH_TITAN 1
   #define X_BED_SIZE 330
   #define Y_BED_SIZE 330
   #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V6 330 TTMC 2.0.8"
+  #define CUSTOM_MACHINE_NAME "X5SA SKR 330 TTMC 2.0.8"
 
-#elif V6_330_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  //#define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V6 330 T 2.0.8"
 
-#elif V6_330_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+#elif SKR_330_NO_TITAN_TMC
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   //#define WITH_TITAN 1
   #define X_BED_SIZE 330
   #define Y_BED_SIZE 330
   #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V6 330 TMC 2.0.8"
+  #define CUSTOM_MACHINE_NAME "X5SA SKR 330 TMC 2.0.8"
 
-#elif V6_330_NO_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  //#define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 2.0.8"
   
-#elif V6_400_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+#elif SKR_400_TITAN_TMC
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   #define WITH_TITAN 1
   #define X_BED_SIZE 400
   #define Y_BED_SIZE 400
   #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V6 400 TTMC 2.0.8"
+  #define CUSTOM_MACHINE_NAME "X5SA SKR 400 TTMC 2.0.8"
 
-#elif V6_400_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+#elif SKR_400_NO_TITAN_TMC
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   //#define WITH_TITAN 1
   #define X_BED_SIZE 400
   #define Y_BED_SIZE 400
   #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V6 400 TMC 2.0.8"
+  #define CUSTOM_MACHINE_NAME "X5SA SKR 400 TMC 2.0.8"
 
-#elif V6_500_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+#elif SKR_500_TITAN_TMC
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   #define WITH_TITAN 1
   #define X_BED_SIZE 500
   #define Y_BED_SIZE 500
   #define Z_MAX_POS 500
-  #define CUSTOM_MACHINE_NAME "X5SA V6 500 TTMC 2.0.8"
+  #define CUSTOM_MACHINE_NAME "X5SA SKR 500 TTMC 2.0.8"
 
-#elif V6_500_TITAN_TMC2209 
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC2209 1
-  #define WITH_TITAN 1
-  #define WITH_DOUBLE_Z 1   //(RN)
-  #define WITH_Z_ALIGN 1    //Comment this out if you not use Z Auto Align (RN)
-  #define X_BED_SIZE 500
-  #define Y_BED_SIZE 500
-  #define Z_MAX_POS 500
-  #define CUSTOM_MACHINE_NAME "X5SA V6 500 TTMC NEW 2.0.8"
-
-#elif V6_500_TITAN_TMC2209V9 
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC2209V9 1
-  #define WITH_TITAN 1
-  #define WITH_DOUBLE_Z 1   //(RN)
-  #define WITH_Z_ALIGN 1    //Comment this out if you not use Z Auto Align (RN)
-  #define X_BED_SIZE 500
-  #define Y_BED_SIZE 500
-  #define Z_MAX_POS 500
-  #define CUSTOM_MACHINE_NAME "X5SA V6 500 TTMC NEW V9 2.0.8"
-
-#elif V5_330_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  #define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V5 330 TTMC 2.0.8"
-
-#elif V5_330_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
-  #define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V5 330 T 2.0.8"
-
-#elif V5_330_NO_TITAN_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  #define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V5 330 TMC 2.0.8"
-
-#elif V5_330_NO_TITAN_NO_TMC
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
-  //#define WITH_TITAN 1
-  #define X_BED_SIZE 330
-  #define Y_BED_SIZE 330
-  #define Z_MAX_POS 400
-  #define CUSTOM_MACHINE_NAME "X5SA V5 330 2.0.8"
-
-#elif XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
-  #define MOTHERBOARD BOARD_CHITU3D_V5
-  //#define WITH_TMC 1
+#elif XY3_SKR_310_NO_TITAN_NO_NO_ABL
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   //#define WITH_TITAN 1
   #define X_BED_SIZE 310
   #define Y_BED_SIZE 310
   #define Z_MAX_POS 400
   #define CUSTOM_MACHINE_NAME "Tronxy XY3 310 2.0.8"
 
-#elif XY2_V6_255_ALL
-  #define MOTHERBOARD BOARD_CHITU3D_V6
-  #define WITH_TMC 1
+#elif XY2_SKR_255_ALL
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
   //#define WITH_TITAN 1
-  #define XY2_MODELS 1
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 255
 #ifdef WITH_TITAN   //(RN)
@@ -289,14 +193,14 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 1
+#define SERIAL_PORT -1
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT_2 3
+#define SERIAL_PORT_2 0
 
 /**
  * This setting determines the communication speed of the printer.
@@ -314,7 +218,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_CHITU3D_V6
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
@@ -859,7 +763,7 @@
 
 // Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
-#ifndef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#ifndef XY3_SKR_310_NO_TITAN_NO_NO_ABL
 #define COREXY
 #endif
 //#define COREXZ
@@ -938,20 +842,24 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#if WITH_TMC2209 //(RN)
-  #define X_DRIVER_TYPE TMC2209_STANDALONE
-  #define Y_DRIVER_TYPE TMC2209_STANDALONE
-  #define Z_DRIVER_TYPE TMC2209_STANDALONE
+#ifdef  WITH_TMC2209 //(RN)
+  #define X_DRIVER_TYPE TMC2209
+  #define Y_DRIVER_TYPE TMC2209
+  #define Z_DRIVER_TYPE TMC2209
   //#define X2_DRIVER_TYPE A4988
   //#define Y2_DRIVER_TYPE A4988
-  #define Z2_DRIVER_TYPE TMC2209_STANDALONE       //(RN)
+#ifdef WITH_DOUBLE_Z   //(RN)
+  #define Z2_DRIVER_TYPE TMC2208
+#else
+  //#define Z2_DRIVER_TYPE TMC2208
+#endif
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
-  #define E0_DRIVER_TYPE A4988
+  #define E0_DRIVER_TYPE TMC2209
 #ifdef Dual_E   //(RN)
-  #define E1_DRIVER_TYPE A4988
+  #define E1_DRIVER_TYPE TMC2209
 #else
-  //#define E1_DRIVER_TYPE A4988
+  //#define E1_DRIVER_TYPE TMC2209
 #endif
   //#define E1_DRIVER_TYPE A4988
   //#define E2_DRIVER_TYPE A4988
@@ -961,66 +869,26 @@
   //#define E6_DRIVER_TYPE A4988
   //#define E7_DRIVER_TYPE A4988
 
-#elif WITH_TMC2209V9 //(RN)
-  #define X_DRIVER_TYPE TMC2209_STANDALONE
-  #define Y_DRIVER_TYPE TMC2209_STANDALONE
-  #define Z_DRIVER_TYPE TMC2209_STANDALONE
+#else  //(RN)
+  #define X_DRIVER_TYPE TMC2208
+  #define Y_DRIVER_TYPE TMC2208
+  #define Z_DRIVER_TYPE TMC2208
   //#define X2_DRIVER_TYPE A4988
   //#define Y2_DRIVER_TYPE A4988
-  #define Z2_DRIVER_TYPE TMC2209_STANDALONE       //(RN)
-  //#define Z3_DRIVER_TYPE A4988
-  //#define Z4_DRIVER_TYPE A4988
-  #define E0_DRIVER_TYPE TMC2208_STANDALONE
-#ifdef Dual_E   //(RN)
-  #define E1_DRIVER_TYPE TMC2208_STANDALONE
+#ifdef WITH_DOUBLE_Z   //(RN)
+  #define Z2_DRIVER_TYPE TMC2208
 #else
-  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
+  //#define Z2_DRIVER_TYPE TMC2208
 #endif
-  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
-  //#define E2_DRIVER_TYPE A4988
-  //#define E3_DRIVER_TYPE A4988
-  //#define E4_DRIVER_TYPE A4988
-  //#define E5_DRIVER_TYPE A4988
-  //#define E6_DRIVER_TYPE A4988
-  //#define E7_DRIVER_TYPE A4988
-
-#elif WITH_TMC  //(RN)
-  #define X_DRIVER_TYPE TMC2208_STANDALONE
-  #define Y_DRIVER_TYPE TMC2208_STANDALONE
-  #define Z_DRIVER_TYPE TMC2208_STANDALONE
-  //#define X2_DRIVER_TYPE A4988
-  //#define Y2_DRIVER_TYPE A4988
-  //#define Z2_DRIVER_TYPE TMC2209_STANDALONE
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
-  #define E0_DRIVER_TYPE TMC2208_STANDALONE
+  #define E0_DRIVER_TYPE TMC2208
 #ifdef Dual_E   //(RN)
-  #define E1_DRIVER_TYPE TMC2208_STANDALONE
+  #define E1_DRIVER_TYPE TMC2208
 #else
-  //#define E1_DRIVER_TYPE TMC2208_STANDALONE
-#endif    //(RN)
-  //#define E2_DRIVER_TYPE A4988
-  //#define E3_DRIVER_TYPE A4988
-  //#define E4_DRIVER_TYPE A4988
-  //#define E5_DRIVER_TYPE A4988
-  //#define E6_DRIVER_TYPE A4988
-  //#define E7_DRIVER_TYPE A4988
-
-#elif !WITH_TMC
-  #define X_DRIVER_TYPE  A4988
-  #define Y_DRIVER_TYPE  A4988
-  #define Z_DRIVER_TYPE  A4988
-  //#define X2_DRIVER_TYPE A4988
-  //#define Y2_DRIVER_TYPE A4988
-  //#define Z2_DRIVER_TYPE A4988
-  //#define Z3_DRIVER_TYPE A4988
-  //#define Z4_DRIVER_TYPE A4988
-  #define E0_DRIVER_TYPE A4988
-#ifdef Dual_E   //(RN)
-  #define E1_DRIVER_TYPE A4988
-#else
+  //#define E1_DRIVER_TYPE TMC2208
+#endif
   //#define E1_DRIVER_TYPE A4988
-#endif
   //#define E2_DRIVER_TYPE A4988
   //#define E3_DRIVER_TYPE A4988
   //#define E4_DRIVER_TYPE A4988
@@ -1081,18 +949,10 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]] (RN)
  */
-#if WITH_TMC && WITH_TITAN
+#ifdef WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 778 }
-#elif WITH_TMC2209 && WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
-#elif WITH_TMC2209V9 && WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 778 }
-#elif WITH_TMC && !WITH_TITAN
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
-#elif WITH_TITAN && !WITH_TMC
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 420 }
 #else
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
 #endif
 
 /**
@@ -1234,7 +1094,7 @@
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#ifdef XY3_SKR_310_NO_TITAN_NO_NO_ABL
   #define PROBE_MANUALLY
 #else
   #define FIX_MOUNTED_PROBE
@@ -1433,7 +1293,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-#ifndef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#ifndef XY3_SKR_310_NO_TITAN_NO_NO_ABL
 #define Z_MIN_PROBE_REPEATABILITY_TEST
 #endif 
 
@@ -1490,7 +1350,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
+#if defined(XY3_SKR_310_NO_TITAN_NO_NO_ABL) || defined(XY2_SKR_255_ALL)
   #define INVERT_X_DIR false
 #else
   #define INVERT_X_DIR true
@@ -1498,7 +1358,7 @@
 
 #define INVERT_Y_DIR true
 
-#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
+#if defined(XY3_SKR_310_NO_TITAN_NO_NO_ABL) || defined(XY2_SKR_255_ALL)
   #define INVERT_Z_DIR true
 #else
   #define INVERT_Z_DIR false
@@ -1653,11 +1513,8 @@
   // With multiple runout sensors use the %c placeholder for the current tool in commands (e.g., "M600 T%c")
   // NOTE: After 'M412 H1' the host handles filament runout and this script does not apply.
   
-  #ifndef TFT_LVGL_UI
   #define FILAMENT_RUNOUT_SCRIPT "M600"
-  #else
-  #define FILAMENT_RUNOUT_SCRIPT "M25"
-  #endif
+
   
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
@@ -1712,7 +1569,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#ifdef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#ifdef XY3_SKR_310_NO_TITAN_NO_NO_ABL
   #define MESH_BED_LEVELING
 #else
   #define AUTO_BED_LEVELING_BILINEAR
@@ -1839,9 +1696,9 @@
  * Include a guided procedure if manual probing is enabled.
  */
 
-#ifndef TFT_LVGL_UI
+
 #define LCD_BED_LEVELING
-#endif
+
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -2518,7 +2375,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // K.3D Full Graphic Smart Controller
@@ -2836,7 +2693,7 @@
 //
 // Generic TFT with detailed options
 //
-#define TFT_GENERIC
+//#define TFT_GENERIC
 #if ENABLED(TFT_GENERIC)
   // :[ 'AUTO', 'ST7735', 'ST7789', 'ST7796', 'R61505', 'ILI9328', 'ILI9341', 'ILI9488' ]
   #define TFT_DRIVER ILI9488 //(RN)
@@ -2891,7 +2748,7 @@
 //
 // ADS7843/XPT2046 ADC Touchscreen such as ILI9341 2.8
 //
-#define TOUCH_SCREEN // DONE BY CHITU BOARD
+//#define TOUCH_SCREEN // DONE BY CHITU BOARD
 #if ENABLED(TOUCH_SCREEN)
   #define BUTTON_DELAY_EDIT  50 // (ms) Button repeat delay for edit screens
   #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus
