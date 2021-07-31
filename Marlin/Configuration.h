@@ -55,10 +55,16 @@
 //Ui Theme Changer
 //#define TFT_CLASSIC_UI    //Marlin Classic
 #define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
-//#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
+//#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support but quite buggy with Chitu boards) 
+
+//Section Extruder Info: 
+//Mixing Extruders and Dual_E must not be selected together. This will result in a compilation error. Either use a mixing nozzle or a normal dual extruder hotend, not both together !!!!
 
 //Dual Extruder Setup
 //#define Dual_E
+
+//Mixing Extruder Setup   (Mixing extruder means an extruder such as the BigTreeTech ZSYoung 2in1 Hotend)
+//#define MIXING_EXTRUDER
 
 //Power Loss Recovery
 //#define POWER_L
@@ -197,7 +203,6 @@
   #define MOTHERBOARD BOARD_CHITU3D_V6
   #define WITH_TMC 1
   //#define WITH_TITAN 1
-  #define XY2_MODELS 1
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 255
 #ifdef WITH_TITAN   //(RN)
@@ -948,7 +953,7 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE A4988
-#ifdef Dual_E   //(RN)
+#if defined(Dual_E) || defined(MIXING_EXTRUDER)   //(RN)
   #define E1_DRIVER_TYPE A4988
 #else
   //#define E1_DRIVER_TYPE A4988
@@ -971,7 +976,7 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE TMC2208_STANDALONE
-#ifdef Dual_E   //(RN)
+#if defined(Dual_E) || defined(MIXING_EXTRUDER)   //(RN)
   #define E1_DRIVER_TYPE TMC2208_STANDALONE
 #else
   //#define E1_DRIVER_TYPE TMC2208_STANDALONE
@@ -994,11 +999,11 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE TMC2208_STANDALONE
-#ifdef Dual_E   //(RN)
+#if defined(Dual_E) || defined(MIXING_EXTRUDER)   //(RN)
   #define E1_DRIVER_TYPE TMC2208_STANDALONE
 #else
   //#define E1_DRIVER_TYPE TMC2208_STANDALONE
-#endif    //(RN)
+#endif
   //#define E2_DRIVER_TYPE A4988
   //#define E3_DRIVER_TYPE A4988
   //#define E4_DRIVER_TYPE A4988
@@ -1016,7 +1021,7 @@
   //#define Z3_DRIVER_TYPE A4988
   //#define Z4_DRIVER_TYPE A4988
   #define E0_DRIVER_TYPE A4988
-#ifdef Dual_E   //(RN)
+#if defined(Dual_E) || defined(MIXING_EXTRUDER)   //(RN)
   #define E1_DRIVER_TYPE A4988
 #else
   //#define E1_DRIVER_TYPE A4988
@@ -1075,6 +1080,8 @@
 #else
   //#define DISTINCT_E_FACTORS
 #endif
+
+
 
 /**
  * Default Axis Steps Per Unit (steps/mm)
@@ -1512,7 +1519,11 @@
 #else
   #define INVERT_E0_DIR false
 #endif
-#define INVERT_E1_DIR true
+#if WITH_TITAN
+  #define INVERT_E1_DIR true
+#else
+  #define INVERT_E1_DIR false
+#endif
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
