@@ -21,7 +21,8 @@
 // #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
 // #define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
 
-// Section shortened name
+////////////////////////////////////////////////////////////////////
+// Section shortened name   (This section is for information only and remains unaffected by any selection !!!!)
 // Tronxy X5SA V6 330 Titan TMC = X5SA V6 330 TTMC 2.0.8
 // Tronxy X5SA V6 330 Titan = X5SA V6 330 T 2.0.8
 // Tronxy X5SA V6 330 TMC = X5SA V6 330 TMC 2.0.8
@@ -33,15 +34,21 @@
 // Tronxy X5SA V5 330 Titan = X5SA V5 330 T 2.0.8
 // Tronxy X5SA V5 330 TMC = X5SA V5 330 TMC 2.0.8
 // Tronxy X5SA V5 330 = X5SA V5 330 2.0.8
+////////////////////////////////////////////////////////////////////
 
 //Ui Theme Changer
-
 //#define TFT_CLASSIC_UI    //Marlin Classic
-//#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
-#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support) 
+#define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
+//#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support but quite buggy with Chitu boards) 
+
+//Section Extruder Info: 
+//Mixing Extruders and Dual_E must not be selected together. This will result in a compilation error. Either use a mixing nozzle or a normal dual extruder hotend, not both together !!!!
 
 //Dual Extruder Setup
 //#define Dual_E
+
+//Mixing Extruder Setup   (Mixing extruder means an extruder such as the BigTreeTech ZSYoung 2in1 Hotend)
+//#define MIXING_EXTRUDER
 
 //Power Loss Recovery
 //#define POWER_L
