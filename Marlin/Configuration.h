@@ -39,7 +39,8 @@
 // #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
 // #define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
 
-// Section shortened name
+////////////////////////////////////////////////////////////////////
+// Section shortened name   (This section is for information only and remains unaffected by any selection !!!!)
 // Tronxy X5SA V6 330 Titan TMC = X5SA V6 330 TTMC 2.0.8
 // Tronxy X5SA V6 330 Titan = X5SA V6 330 T 2.0.8
 // Tronxy X5SA V6 330 TMC = X5SA V6 330 TMC 2.0.8
@@ -51,6 +52,7 @@
 // Tronxy X5SA V5 330 Titan = X5SA V5 330 T 2.0.8
 // Tronxy X5SA V5 330 TMC = X5SA V5 330 TMC 2.0.8
 // Tronxy X5SA V5 330 = X5SA V5 330 2.0.8
+////////////////////////////////////////////////////////////////////
 
 //Ui Theme Changer
 //#define TFT_CLASSIC_UI    //Marlin Classic
