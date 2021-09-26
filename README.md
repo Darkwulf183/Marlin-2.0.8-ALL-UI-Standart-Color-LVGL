@@ -41,6 +41,10 @@
 #define TFT_COLOR_UI      //Marlin Color Ui (Touch Support)
 //#define TFT_LVGL_UI       //Marlin MKS Themed UI (Good Touch Support but quite buggy with Chitu boards) 
 
+//ATTENTION: Board conversion as in the video: https://bit.ly/3zCrela is mandatory!!! Linear Advance will not work without it!!!
+//Linear Advance activation:
+//#define LINEAR_ADVANCE
+
 //Section Extruder Info: 
 //Mixing Extruders and Dual_E must not be selected together. This will result in a compilation error. Either use a mixing nozzle or a normal dual extruder hotend, not both together !!!!
 
