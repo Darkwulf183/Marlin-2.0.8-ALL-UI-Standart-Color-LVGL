@@ -866,7 +866,9 @@
 
 // Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
-#ifndef XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL
+#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)   //(RN)
+//#define COREXY
+#else
 #define COREXY
 #endif
 //#define COREXZ
