@@ -32,12 +32,12 @@
 //#define V6_500_TITAN_TMC2209 1       // New Chitu V6 190319     (RN)
 //#define V6_500_TITAN_TMC2209V9 1     // New Chitu V9 200420     (RN)  Testrepo !!! Please only test with a full backup of the board !!!!!!!!!
 
-// #define V5_330_TITAN_TMC 1
-// #define V5_330_TITAN_NO_TMC 1
-// #define V5_330_NO_TITAN_TMC 1
-// #define V5_330_NO_TITAN_NO_TMC 1
-// #define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
-// #define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
+//#define V5_330_TITAN_TMC 1
+//#define V5_330_TITAN_NO_TMC 1
+//#define V5_330_NO_TITAN_TMC 1
+//#define V5_330_NO_TITAN_NO_TMC 1
+//#define XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL 1
+//#define XY2_V6_255_ALL 1        //Please comment with TITAN and with TMC itself in or out in line #elif XY2_V6_255_ALL !!! (RN)
 
 ////////////////////////////////////////////////////////////////////
 // Section shortened name   (This section is for information only and remains unaffected by any selection !!!!)
@@ -1509,15 +1509,19 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
+#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)  //(RN)
   #define INVERT_X_DIR false
 #else
   #define INVERT_X_DIR true
 #endif
 
-#define INVERT_Y_DIR true
+#ifdef XY2_V6_255_ALL   //(RN)
+  #define INVERT_Y_DIR true
+#else
+  #define INVERT_Y_DIR true
+#endif
 
-#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)
+#if defined(XY3_V5_310_NO_TITAN_NO_TMC_NO_ABL) || defined(XY2_V6_255_ALL)  //(RN)
   #define INVERT_Z_DIR true
 #else
   #define INVERT_Z_DIR false
