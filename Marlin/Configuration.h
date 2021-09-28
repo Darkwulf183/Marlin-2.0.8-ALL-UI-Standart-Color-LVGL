@@ -1516,7 +1516,7 @@
 #endif
 
 #ifdef XY2_V6_255_ALL   //(RN)
-  #define INVERT_Y_DIR true
+  #define INVERT_Y_DIR false
 #else
   #define INVERT_Y_DIR true
 #endif
