@@ -56,7 +56,11 @@
 //
 #define X_STOP_PIN                          PG10
 #define Y_STOP_PIN                          PA12
-#define Z_STOP_PIN                          PG9
+#ifdef V6_500_TITAN_TMC2209V9    //(RN)
+  #define Z_STOP_PIN                          PA14
+#else
+  #define Z_STOP_PIN                          PG9
+#endif
 
 //
 // Steppers

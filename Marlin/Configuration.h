@@ -30,7 +30,7 @@
 //#define V6_400_NO_TITAN_TMC 1
 //#define V6_500_TITAN_TMC 1
 //#define V6_500_TITAN_TMC2209 1       // New Chitu V6 190319     (RN)
-//#define V6_500_TITAN_TMC2209V9 1     // New Chitu V9 200420     (RN)  Testrepo !!! Please only test with a full backup of the board !!!!!!!!!
+//#define V6_500_TITAN_TMC2209V9 1     // New Chitu V9 200420     (RN)  Testrepo !!! Please only test with a full backup of the board !!!!!!!!! please leave a comment if it is running right !!!! Last adjustments should fit now :-)
 
 //#define V5_330_TITAN_TMC 1
 //#define V5_330_TITAN_NO_TMC 1
