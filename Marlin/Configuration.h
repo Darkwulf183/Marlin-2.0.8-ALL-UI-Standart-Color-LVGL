@@ -75,6 +75,9 @@
 //Power Loss Recovery
 //#define POWER_L
 
+//Printcounter is almost like an operating hours counter. It counts full hours and number of prints. 
+//#define PRINTCOUNTER
+
 #if V6_330_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V6
   #define WITH_TMC 1
