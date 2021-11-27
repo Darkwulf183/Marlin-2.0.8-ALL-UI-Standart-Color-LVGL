@@ -57,6 +57,9 @@
 //Power Loss Recovery
 //#define POWER_L
 
+//Printcounter is almost like an operating hours counter. It counts full hours and number of prints. 
+//#define PRINTCOUNTER
+
 ```
 
 # Marlin 3D Printer Firmware
